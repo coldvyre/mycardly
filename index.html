@@ -1,1 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="theme-color" content="#0b0b0f">
+    <meta name="description" content="Cardly — Create a profile card that represents you. Customize your style, express yourself, and share your card.">
+
+    <title>Cardly — Your Identity, Your Style</title>
+
+    <!-- Website styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="background-effects" aria-hidden="true">
+        <div class="background-glow glow-one"></div>
+        <div class="background-glow glow-two"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="#" class="brand" aria-label="Cardly home">
+            <span class="brand-icon">c</span>
+            <span>cardly<span class="brand-period">.</span></span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="#features">Features</a>
+            <a href="#showcase">Explore</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="#editor" class="nav-button">
+                Start creating
+                <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+
+        <button class="mobile-menu-button" id="mobileMenuButton"
+                aria-label="Toggle navigation" aria-expanded="false">
+            ☰
+        </button>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+
+            <div class="hero-content">
+                <div class="announcement">
+                    <span class="announcement-dot"></span>
+                    YOUR PROFILE, REIMAGINED
+                </div>
+
+                <h1>
+                    Your identity.<br>
+                    <span class="gradient-text">Your style.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Create a profile card that feels like you.
+                    Customize every detail, express yourself, and
+                    share your own little corner of the internet.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#editor" class="primary-button">
+                        Create your card
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                    <a href="#features" class="secondary-button">
+                        Discover Cardly
+                    </a>
+                </div>
+
+                <div class="hero-note">
+                    <span aria-hidden="true">✦</span>
+                    Your creativity. Your card. Your identity.
+                </div>
+            </div>
+
+            <!-- Hero Card Preview -->
+            <div class="hero-visual" id="showcase">
+                <div class="visual-label label-top">
+                    <span class="status-dot"></span>
+                    A LITTLE PIECE OF YOU
+                </div>
+
+                <article class="profile-card hero-profile-card">
+                    <div class="profile-card-cover">
+                        <div class="cover-orb orb-one"></div>
+                        <div class="cover-orb orb-two"></div>
+                        <div class="cover-grid"></div>
+                    </div>
+
+                    <div class="profile-card-content">
+                        <div class="profile-avatar">
+                            <span>✦</span>
+                        </div>
+
+                        <div class="profile-heading">
+                            <div>
+                                <h2>yourname</h2>
+                                <p class="profile-handle">@yourusername</p>
+                            </div>
+
+                            <span class="profile-badge" title="Profile preview">✧</span>
+                        </div>
+
+                        <p class="profile-bio">
+                            just someone creating their own little universe ✦
+                        </p>
+
+                        <div class="profile-tags">
+                            <span>✧ creative</span>
+                            <span>☾ dreamer</span>
+                            <span>♡ online</span>
+                        </div>
+
+                        <div class="profile-divider"></div>
+
+                        <div class="profile-footer">
+                            <span class="profile-footer-label">
+                                A CARD MADE WITH
+                                <strong>cardly.</strong>
+                            </span>
+
+                            <span class="profile-footer-symbol">↗</span>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="floating-note note-left">
+                    <span class="floating-note-icon">✦</span>
+                    <div>
+                        <strong>Make it yours</strong>
+                        <span>Every little detail</span>
+                    </div>
+                </div>
+
+                <div class="floating-note note-right">
+                    <span class="floating-note-icon">↗</span>
+                    <div>
+                        <strong>Ready to share</strong>
+                        <span>Your own identity</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Feature Highlights -->
+        <section class="features-section" id="features">
+            <div class="section-heading">
+                <span class="section-eyebrow">MADE FOR YOUR IMAGINATION</span>
+                <h2>More than a profile.</h2>
+                <p>A space to create something that feels entirely yours.</p>
+            </div>
+
+            <div class="features-grid">
+
+                <article class="feature-card">
+                    <div class="feature-icon">✧</div>
+                    <h3>Your own aesthetic</h3>
+                    <p>
+                        Choose colors, fonts, backgrounds, symbols,
+                        and details that match your personality.
+                    </p>
+                    <span class="feature-number">01 / DESIGN</span>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">⌘</div>
+                    <h3>Create from scratch</h3>
+                    <p>
+                        Build your card your way. Arrange elements
+                        and make your layout your own.
+                    </p>
+                    <span class="feature-number">02 / CREATE</span>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">↗</div>
+                    <h3>Made to be shared</h3>
+                    <p>
+                        Give your profile its own place online
+                        and share it with the people you choose.
+                    </p>
+                    <span class="feature-number">03 / CONNECT</span>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Editor Placeholder -->
+        <section class="editor-section" id="editor">
+            <div class="editor-content">
+                <span class="section-eyebrow">YOUR CREATIVE SPACE</span>
+
+                <h2>Your card starts here.</h2>
+
+                <p>
+                    This is where your profile-card editor will live.
+                    We're building it one feature at a time.
+                </p>
+
+                <div class="editor-preview">
+                    <div class="editor-preview-icon">✦</div>
+                    <h3>Your canvas awaits.</h3>
+                    <p>
+                        Soon, you'll be able to customize your card,
+                        move elements around, and preview your design.
+                    </p>
+                    <span class="coming-soon-label">
+                        <span class="status-dot"></span>
+                        EDITOR IN DEVELOPMENT
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <span class="section-eyebrow">THIS IS YOUR SPACE</span>
+                <h2>Make something <span class="gradient-text">uniquely you.</span></h2>
+                <p>Your identity doesn't have to fit into a template.</p>
+
+                <a href="#editor" class="primary-button">
+                    Explore your canvas
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="#" class="brand footer-brand">
+            <span class="brand-icon">c</span>
+            <span>cardly<span class="brand-period">.</span></span>
+        </a>
+
+        <p>Made for the way you express yourself.</p>
+
+        <span class="footer-copyright">
+            © <span id="currentYear"></span> Cardly
+        </span>
+    </footer>
+
+    <!-- Website functionality -->
+    <script src="script.js"></script>
+
+</body>
+</html>
