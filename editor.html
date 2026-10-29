@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardly Studio — Visual Editor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0a0a0c',
+                            800: '#121216',
+                            700: '#1c1c24',
+                            600: '#2a2a35'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-100 h-screen flex flex-col overflow-hidden">
+
+    <!-- Top Toolbar -->
+    <header class="h-16 bg-dark-800 border-b border-dark-700 px-6 flex items-center justify-between shrink-0">
+        <div class="flex items-center space-x-4">
+            <a href="index.html" class="text-gray-400 hover:text-white transition-colors flex items-center space-x-2 text-sm font-medium">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Exit</span>
+            </a>
+            <div class="h-5 w-px bg-dark-700"></div>
+            <div class="flex items-center space-x-2">
+                <div class="w-7 h-7 rounded-lg bg-violet-600 flex items-center justify-center text-white text-xs font-bold">
+                    <i class="fa-solid fa-id-card"></i>
+                </div>
+                <span class="font-bold text-white text-sm">Cardly Studio</span>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <button id="save-btn" class="px-4 py-2 rounded-xl bg-dark-700 hover:bg-dark-600 text-gray-200 text-xs font-semibold border border-dark-600 transition-all flex items-center space-x-2">
+                <i class="fa-solid fa-floppy-disk text-violet-400"></i>
+                <span>Save Locally</span>
+            </button>
+            <button id="export-btn" class="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold transition-all shadow-md shadow-violet-600/20 flex items-center space-x-2">
+                <i class="fa-solid fa-share-nodes"></i>
+                <span>Publish / Export</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Editor Layout -->
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- Sidebar Controls -->
+        <aside class="w-full sm:w-96 bg-dark-800 border-r border-dark-700 flex flex-col shrink-0 z-20">
+            <!-- Tabs -->
+            <div class="grid grid-cols-3 border-b border-dark-700 text-xs font-semibold text-gray-400">
+                <button class="py-3.5 text-violet-400 border-b-2 border-violet-500 bg-dark-700/50 tab-btn" data-target="profile-tab">Profile</button>
+                <button class="py-3.5 hover:text-white tab-btn" data-target="appearance-tab">Design</button>
+                <button class="py-3.5 hover:text-white tab-btn" data-target="links-tab">Links</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                
+                <!-- Profile Tab -->
+                <div id="profile-tab" class="space-y-4 tab-content">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Profile Info</h3>
+                    
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1.5">Display Name</label>
+                        <input type="text" id="input-name" value="Alex Rivers" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1.5">Username / Handle</label>
+                        <input type="text" id="input-handle" value="@alexrivers" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1.5">Bio / Description</label>
+                        <textarea id="input-bio" rows="3" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors resize-none">UI/UX Designer & open-source creator building digital tools.</textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1.5">Avatar Image URL</label>
+                        <input type="text" id="input-avatar" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors">
+                    </div>
+                </div>
+
+                <!-- Appearance Tab -->
+                <div id="appearance-tab" class="space-y-4 tab-content hidden">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Styling & Theme</h3>
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1.5">Card Background Gradient</label>
+                        <select id="input-bg" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors">
+                            <option value="from-dark-800 to-dark-900">Charcoal Dark</option>
+                            <option value="from-violet-900/40 to-dark-900">Deep Purple Glow</option>
+                            <option value="from-blue-900/40 to-dark-900">Midnight Blue</option>
+                            <option value="from-rose-900/40 to-dark-900">Sunset Rose</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1.5">Font Family</label>
+                        <select id="input-font" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors">
+                            <option value="font-['Plus_Jakarta_Sans']">Plus Jakarta Sans</option>
+                            <option value="font-['Inter']">Inter</option>
+                            <option value="font-['Outfit']">Outfit</option>
+                            <option value="font-['Space_Grotesk']">Space Grotesk</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1.5">Border Radius</label>
+                        <select id="input-radius" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors">
+                            <option value="rounded-2xl">Modern Rounded (2xl)</option>
+                            <option value="rounded-3xl">Extra Rounded (3xl)</option>
+                            <option value="rounded-xl">Subtle (xl)</option>
+                            <option value="rounded-none">Sharp Corners</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Links Tab -->
+                <div id="links-tab" class="space-y-4 tab-content hidden">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Social Links & Buttons</h3>
+                    
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1.5">Primary Link Text</label>
+                        <input type="text" id="link-1-text" value="GitHub Portfolio" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white mb-2 focus:outline-none focus:border-violet-500">
+                        <input type="text" id="link-1-url" value="https://github.com" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-violet-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1.5">Secondary Link Text</label>
+                        <input type="text" id="link-2-text" value="Twitter / X Profile" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white mb-2 focus:outline-none focus:border-violet-500">
+                        <input type="text" id="link-2-url" value="https://twitter.com" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-violet-500">
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- Live Preview Area -->
+        <main class="flex-1 bg-dark-900 flex items-center justify-center p-6 relative overflow-y-auto">
+            <div class="absolute inset-0 bg-[radial-gradient(#2a2a35_1px,transparent_1px)] [background-size:24px_24px] opacity-45 pointer-events-none"></div>
+
+            <!-- Card Preview Container -->
+            <div id="card-preview" class="w-full max-w-sm bg-gradient-to-b from-dark-800 to-dark-900 border border-dark-700 rounded-2xl p-8 shadow-2xl text-center relative z-10 transition-all font-['Plus_Jakarta_Sans']">
+                
+                <!-- Avatar -->
+                <div class="w-24 h-24 mx-auto mb-5 rounded-full p-1 bg-gradient-to-tr from-violet-600 to-indigo-500 shadow-lg shadow-violet-500/20">
+                    <img id="preview-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Avatar" class="w-full h-full object-cover rounded-full">
+                </div>
+
+                <!-- Identity -->
+                <h2 id="preview-name" class="text-xl font-bold text-white mb-1">Alex Rivers</h2>
+                <p id="preview-handle" class="text-xs text-violet-400 font-medium mb-4">@alexrivers</p>
+                <p id="preview-bio" class="text-sm text-gray-300 mb-6 leading-relaxed">UI/UX Designer & open-source creator building digital tools.</p>
+
+                <!-- Links List -->
+                <div id="preview-links" class="space-y-3">
+                    <a id="preview-link-1" href="https://github.com" target="_blank" class="flex items-center justify-center space-x-2 w-full py-3 px-4 rounded-xl bg-dark-700 hover:bg-dark-600 text-white font-semibold text-sm transition-all border border-dark-600 shadow-sm">
+                        <i class="fa-brands fa-github text-violet-400"></i>
+                        <span id="preview-link-1-text">GitHub Portfolio</span>
+                    </a>
+                    <a id="preview-link-2" href="https://twitter.com" target="_blank" class="flex items-center justify-center space-x-2 w-full py-3 px-4 rounded-xl bg-dark-700 hover:bg-dark-600 text-white font-semibold text-sm transition-all border border-dark-600 shadow-sm">
+                        <i class="fa-brands fa-twitter text-violet-400"></i>
+                        <span id="preview-link-2-text">Twitter / X Profile</span>
+                    </a>
+                </div>
+
+                <!-- Footer branding -->
+                <div class="mt-8 pt-4 border-t border-dark-700/60 text-[10px] text-gray-500 font-medium tracking-wide uppercase">
+                    Powered by Cardly
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Editor Interactive Logic Script -->
+    <script>
+        // Tab Switching Logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => {
+                    b.classList.remove('text-violet-400', 'border-b-2', 'border-violet-500', 'bg-dark-700/50');
+                    b.classList.add('hover:text-white');
+                });
+                tabContents.forEach(c => c.classList.add('hidden'));
+
+                btn.classList.add('text-violet-400', 'border-b-2', 'border-violet-500', 'bg-dark-700/50');
+                btn.classList.remove('hover:text-white');
+                document.getElementById(btn.dataset.target).classList.remove('hidden');
+            });
+        });
+
+        // Real-time Live Preview Binding
+        const inputName = document.getElementById('input-name');
+        const inputHandle = document.getElementById('input-handle');
+        const inputBio = document.getElementById('input-bio');
+        const inputAvatar = document.getElementById('input-avatar');
+        const inputBg = document.getElementById('input-bg');
+        const inputFont = document.getElementById('input-font');
+        const inputRadius = document.getElementById('input-radius');
+
+        const link1Text = document.getElementById('link-1-text');
+        const link1Url = document.getElementById('link-1-url');
+        const link2Text = document.getElementById('link-2-text');
+        const link2Url = document.getElementById('link-2-url');
+
+        const previewName = document.getElementById('preview-name');
+        const previewHandle = document.getElementById('preview-handle');
+        const previewBio = document.getElementById('preview-bio');
+        const previewAvatar = document.getElementById('preview-avatar');
+        const cardPreview = document.getElementById('card-preview');
+
+        const previewLink1Text = document.getElementById('preview-link-1-text');
+        const previewLink1 = document.getElementById('preview-link-1');
+        const previewLink2Text = document.getElementById('preview-link-2-text');
+        const previewLink2 = document.getElementById('preview-link-2');
+
+        function updatePreview() {
+            previewName.textContent = inputName.value;
+            previewHandle.textContent = inputHandle.value;
+            previewBio.textContent = inputBio.value;
+            if(inputAvatar.value) previewAvatar.src = inputAvatar.value;
+
+            previewLink1Text.textContent = link1Text.value;
+            previewLink1.href = link1Url.value;
+            previewLink2Text.textContent = link2Text.value;
+            previewLink2.href = link2Url.value;
+
+            // Apply styling classes
+            cardPreview.className = `w-full max-w-sm bg-gradient-to-b ${inputBg.value} border border-dark-700 ${inputRadius.value} p-8 shadow-2xl text-center relative z-10 transition-all ${inputFont.value}`;
+        }
+
+        [inputName, inputHandle, inputBio, inputAvatar, inputBg, inputFont, inputRadius, link1Text, link1Url, link2Text, link2Url].forEach(el => {
+            el.addEventListener('input', updatePreview);
+            el.addEventListener('change', updatePreview);
+        });
+
+        // Local Storage Saving
+        const saveBtn = document.getElementById('save-btn');
+        saveBtn.addEventListener('click', () => {
+            const cardData = {
+                name: inputName.value,
+                handle: inputHandle.value,
+                bio: inputBio.value,
+                avatar: inputAvatar.value,
+                bg: inputBg.value,
+                font: inputFont.value,
+                radius: inputRadius.value,
+                link1Text: link1Text.value,
+                link1Url: link1Url.value,
+                link2Text: link2Text.value,
+                link2Url: link2Url.value
+            };
+            localStorage.setItem('cardly_saved_card', JSON.stringify(cardData));
+            
+            saveBtn.innerHTML = `<i class="fa-solid fa-check text-green-400"></i><span>Saved!</span>`;
+            setTimeout(() => {
+                saveBtn.innerHTML = `<i class="fa-solid fa-floppy-disk text-violet-400"></i><span>Save Locally</span>`;
+            }, 2000);
+        });
+
+        // Export/Publish Alert simulation
+        document.getElementById('export-btn').addEventListener('click', () => {
+            alert("To publish your card for free, you can deploy this static HTML code to GitHub Pages or Netlify in minutes! Check the README instructions for complete guidance.");
+        });
+    </script>
+
+</body>
+</html>
